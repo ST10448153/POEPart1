@@ -15,17 +15,22 @@ public class Login {
     public static String passWord1 = "#Ramp@65li";
     
      public static boolean checkUserName(){
+        /*this boolean method checks if the entered username 
+        contains an underscore and it's length is less than 5 characters.*/
          String username;
          Scanner obj = new Scanner(System.in);
          System.out.println("Enter username>>");
          username = obj.nextLine();
             
-         
+         //the method returns true when the conditions are met by the username otherwise is false.
         return username.contains("_") && username.length()<5;
             
      }
 
-     public static boolean checkPasswordComplexity(String password) {
+     public static boolean checkPasswordComplexity() {
+         System.out.println("Enter password>>");
+         Scanner obj = new Scanner(System.in);
+         String password = obj.nextLine();
         boolean checkDigit = false;
         boolean hasUppercase = false;
         boolean hasSpecialChar = false;
@@ -51,24 +56,20 @@ public class Login {
     public static void main(String[] args) {
         int select;
         String username;
+        String password;
         Scanner obj = new Scanner(System.in);
         
         System.out.println("Please select an option:\n1.register Account\n2.Login to existing Account\n3.Logout\n");
         select = obj.nextInt();
         
-       
-        
         if(select == 1){
             
-            //registering username
+           
             System.out.println(checkUserName()); 
              
              
-          /*   //registering the password
-             System.out.println("Enter password>>");
-             String password = obj.nextLine();
-             boolean isValid = checkPasswordComplexity(password);
-             System.out.println(isValid);*/
+            //registering the password
+            System.out.println(checkPasswordComplexity());
         } 
        /* if(option ==2){
            
