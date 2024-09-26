@@ -53,27 +53,73 @@ public class Login {
       
         return false;
     }
+     
+     public static String registerUser(){
+         String username;
+        
+         Scanner obj = new Scanner(System.in);
+         System.out.println("Enter username>>");
+         username = obj.nextLine();
+         if(!username.contains("_") || username.length()>=5){
+            System.out.println("username is not correctly formatted,please ensure that\nyour username"
+                    + " contains an underscore and is no more than 5 characters.");
+         }  
+         
+         
+        String password;
+        System.out.println("Enter password>>");
+        password = obj.nextLine();
+        boolean checkDigit = false;
+        boolean hasUppercase = false;
+        boolean hasSpecialChar = false;
+
+        for (char c : password.toCharArray()) {
+            if (Character.isDigit(c)) {
+                checkDigit = true;
+            } else if (Character.isUpperCase(c)) {
+                hasUppercase = true;
+            } else if (!Character.isLetterOrDigit(c)) {
+                hasSpecialChar = true;
+            }
+        }
+            
+            if (!checkDigit || !hasUppercase || !hasSpecialChar || password.length()<8) {
+                
+                System.out.println("password is not correctly formatted,please ensure that your password\ncontains"
+                        + " at least 8 characters, a number, a special character and capital letter.");
+            }
+            
+            if(username.contains("_") && username.length()<5 && checkDigit && hasUppercase &&  hasSpecialChar && password.length()>=8){
+                System.out.println("username and password have been captured succefully,\n"+ username +" is registered succefully.");
+            }
+           
+     
+        return "username is not correctly formatted";
+
+        
+     }   
+     
+    
+        
     public static void main(String[] args) {
         int select;
-        String username;
-        String password;
         Scanner obj = new Scanner(System.in);
-        
         System.out.println("Please select an option:\n1.register Account\n2.Login to existing Account\n3.Logout\n");
         select = obj.nextInt();
         
         if(select == 1){
             
-           
-            System.out.println(checkUserName()); 
-             
-             
-            //registering the password
-            System.out.println(checkPasswordComplexity());
+            //calling the checkUserName method
+            //System.out.println(checkUserName()); 
+            //calling the checkPasswordComplexity method
+           //System.out.println(checkPasswordComplexity());
+            
+            registerUser();
         } 
-       /* if(option ==2){
-           
-        }*/
+        if(select ==2){
+            //calling the method
+          // System.out.println(loginUser());
+        }
         
         
         
