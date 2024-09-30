@@ -11,8 +11,10 @@ import java.util.Scanner;
  * @author RC_Student_lab
  */
 public class Login {
-    public static String userName1 = "Pheedi_";
+    public static String userName1 = "Phe_";
     public static String passWord1 = "#Ramp@65li";
+    public static String firstname="Mashoto";
+    public static String lastname="Molepo";
     
      public static boolean checkUserName(){
         /*this boolean method checks if the entered username 
@@ -51,13 +53,18 @@ public class Login {
         }
 
       
-        return false;
+        return true;
     }
      
      public static String registerUser(){
-         String username;
-        
          Scanner obj = new Scanner(System.in);
+         //prompt,collect and store the first and last names of the user 
+         System.out.println("Please enter your First name:");
+         firstname = obj.nextLine();
+         System.out.println("Enter your last name:");
+         lastname = obj.nextLine();
+         
+         String username;
          System.out.println("Enter username>>");
          username = obj.nextLine();
          if(!username.contains("_") || username.length()>=5){
@@ -90,7 +97,7 @@ public class Login {
             }
             
             if(username.contains("_") && username.length()<5 && checkDigit && hasUppercase &&  hasSpecialChar && password.length()>=8){
-                System.out.println("username and password have been captured succefully,\n"+ username +" is registered succefully.");
+                System.out.println("username and password have been captured succefully,\n"+ firstname +" is registered succefully.");
             }
            
      
@@ -99,7 +106,23 @@ public class Login {
         
      }   
      
-    
+    public static boolean  loginUser(){
+        Scanner obj = new Scanner(System.in);
+        String username;
+        System.out.println("Enter username>>");
+        username = obj.nextLine();
+         
+        String password;
+        System.out.println("Enter password>>");
+        password = obj.nextLine();
+       if(username.equals(userName1) && password.equals(passWord1)){
+           System.out.println("Welcome " + firstname +"," +lastname +" it is great to see you again.");
+       }else{
+           System.out.println("username or password is incorrect, please try again");
+       }
+        return true;
+    }
+     
         
     public static void main(String[] args) {
         int select;
@@ -108,19 +131,15 @@ public class Login {
         select = obj.nextInt();
         
         if(select == 1){
-            
-            //calling the checkUserName method
-            //System.out.println(checkUserName()); 
-            //calling the checkPasswordComplexity method
-           //System.out.println(checkPasswordComplexity());
-            
             registerUser();
         } 
         if(select ==2){
             //calling the method
-          // System.out.println(loginUser());
+           loginUser();
         }
-        
+        if(select ==3){
+            System.out.println("Thank you, " +firstname +" "+ lastname +" for using our service....Now you are signed out.");
+        }
         
         
         
