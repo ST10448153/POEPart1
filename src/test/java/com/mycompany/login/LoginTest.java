@@ -37,7 +37,7 @@ public class LoginTest {
     }
     
     @BeforeAll
-    public static void setUpClass() {
+ /*   public static void setUpClass() {
     }
     
     @AfterAll
@@ -54,7 +54,7 @@ public class LoginTest {
 
     /**
      * Test of checkUserName method, of class Login.
-     */
+  */   
     @org.junit.jupiter.api.Test
     public void testCheckUserName() {
         System.out.println("checkUserName");

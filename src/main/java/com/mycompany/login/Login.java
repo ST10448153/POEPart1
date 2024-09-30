@@ -11,6 +11,8 @@ import java.util.Scanner;
  * @author RC_Student_lab
  */
 public class Login {
+    public static String username ="";
+    public static String password="";
     public static String userName1 = "Phe_";
     public static String passWord1 = "#Ramp@65li";
     public static String firstname="Mashoto";
@@ -32,7 +34,7 @@ public class Login {
      public static boolean checkPasswordComplexity() {
          System.out.println("Enter password>>");
          Scanner obj = new Scanner(System.in);
-         String password = obj.nextLine();
+         password = obj.nextLine();
         boolean checkDigit = false;
         boolean hasUppercase = false;
         boolean hasSpecialChar = false;
@@ -64,7 +66,7 @@ public class Login {
          System.out.println("Enter your last name:");
          lastname = obj.nextLine();
          
-         String username;
+         
          System.out.println("Enter username>>");
          username = obj.nextLine();
          if(!username.contains("_") || username.length()>=5){
@@ -73,7 +75,7 @@ public class Login {
          }  
          
          
-        String password;
+        
         System.out.println("Enter password>>");
         password = obj.nextLine();
         boolean checkDigit = false;
@@ -101,18 +103,18 @@ public class Login {
             }
            
      
-        return "username is not correctly formatted";
+        return "username or password is not correctly formatted";
 
         
      }   
      
     public static boolean  loginUser(){
         Scanner obj = new Scanner(System.in);
-        String username;
+        
         System.out.println("Enter username>>");
         username = obj.nextLine();
          
-        String password;
+       // String password;
         System.out.println("Enter password>>");
         password = obj.nextLine();
        if(username.equals(userName1) && password.equals(passWord1)){
@@ -122,7 +124,16 @@ public class Login {
        }
         return true;
     }
-     
+     public static String returnLoginStatus(){
+        loginUser();
+        
+       if(username.equals(userName1) && password.equals(passWord1)){
+           System.out.println("Login successful");
+       }else{
+           System.out.println("Login failed");
+       }
+       return "";
+    } 
         
     public static void main(String[] args) {
         int select;
@@ -135,7 +146,7 @@ public class Login {
         } 
         if(select ==2){
             //calling the method
-           loginUser();
+           returnLoginStatus();
         }
         if(select ==3){
             System.out.println("Thank you, " +firstname +" "+ lastname +" for using our service....Now you are signed out.");
