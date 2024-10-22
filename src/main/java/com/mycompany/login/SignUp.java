@@ -83,6 +83,14 @@ public class SignUp {
                         
                             
                         }
+                 
+                  /*we are converting the above array to a single string so that it can be displayed using JOptionPane,
+                  we do this by creating an object called build from the StringBuilder class*/
+                  StringBuilder build = new StringBuilder();
+                  for (int i=0;i<tasks;i++){
+                      build.append(taskName).append("\n");
+                 }  
+                 JOptionPane.showMessageDialog(null, build.toString(), "taskNametr", JOptionPane.INFORMATION_MESSAGE);
                          
                    
 //                         String taskDescription = JOptionPane.showInputDialog(null,"Enter task description");
