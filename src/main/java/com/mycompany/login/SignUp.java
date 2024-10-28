@@ -8,12 +8,15 @@ package com.mycompany.login;
  *
  * @author RC_Student_lab
  */
+
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import javax.swing.JDialog;
 
 public class SignUp {
-    public static String [] taskName;
+   //AddTasks hh = new AddTasks();
+    
+    static Task Tasks = new Task();
     public static void main(String[] args) {
         
         
@@ -63,52 +66,82 @@ public class SignUp {
         JOptionPane.showMessageDialog(null, "Welcome to EasyKhanban");
       int option = Integer.parseInt( JOptionPane.showInputDialog("Select an option:\n1.Add tasks \n2.Show report \n3.Quit"));
 //        int option = Integer.parseInt(select);
-        while (option != 0) {
+        while (option != 0 || option !=3) {
            
            String add;
            int tasks;
            switch(option){
-                  case 1 : tasks = Integer.parseInt(JOptionPane.showInputDialog(null,"How many tasks do you want to add?"));
-                          String[] taskName = new String[tasks];
-                          int duration = Integer.parseInt( JOptionPane.showInputDialog("Enter the duration (in hours)"));
-                  for(int i =0;i<tasks;i++){
-                      
-                  
-                         taskName[i] = JOptionPane.showInputDialog("Enter task name " + (i + 1) +":");
-                       //  taskName = new String[tasks];
-                         taskName[i] =  JOptionPane.showInputDialog("Enter task description" + (i + 1) + ":");
-                        // taskName = new String[tasks];
-                        JOptionPane.showMessageDialog(null, "task description is successfully captured!!!");
-                        taskName[i] = JOptionPane.showInputDialog(" the developer details(Firstname and lastname)");
-                        
-                            
-                        }
-                 
-                  /*we are converting the above array to a single string so that it can be displayed using JOptionPane,
-                  we do this by creating an object called build from the StringBuilder class*/
-                  StringBuilder build = new StringBuilder();
-                  for (int i=0;i<tasks;i++){
-                      build.append(taskName).append("\n");
-                 }  
-                 JOptionPane.showMessageDialog(null, build.toString(), "taskNametr", JOptionPane.INFORMATION_MESSAGE);
-                         
-                   
-//                         String taskDescription = JOptionPane.showInputDialog(null,"Enter task description");
-//                         JOptionPane.showMessageDialog(null, "task description is successfully captured!!!");
-//                         String developerDetails = JOptionPane.showInputDialog(null,"Enter the developer details(Firstname and lastname)");
-//                         
-//                         int select = Integer.parseInt( JOptionPane.showInputDialog("Select an option:\n1.To do \n2.Done \n3.Doing"));
-                        
-                         
-                            
-                  case 2:   JOptionPane.showMessageDialog(null,"Coming soon!");      
+                  case 1 : 
+                      String input = JOptionPane.showInputDialog("Enter the number of tasks:");
+                        tasks = Integer.parseInt(input);
+
+        // Arrays to store names and marks
+        String[] taskStatus = new String[tasks];
+        String developerDetails;
+        String taskNumber;
+        String taskName ;
+        String[] description = new String[tasks];
+        String[] taskID = new String[tasks];
+        String[] duration = new String[tasks];
+        int hours;
+        int totalHours=0;
+        String[] outputs = new String[tasks];
+        
+        for (int i = 0; i < tasks; i++) {
+            taskStatus[i] =JOptionPane.showInputDialog("Enter the status of the task:\n1.ToDo \n2.Done \n3.Doing");
+           
+           int hill = Integer.parseInt(taskStatus[i]);
+           String taskM = null;
+           if(hill ==1 ){
+                 taskM = "To Do";
+            }
+           if(hill ==2){
+              taskM = "Done";
+           }
+           if(hill ==3){
+               taskM = "Doing";
+           }
+             
+            
+            developerDetails =JOptionPane.showInputDialog("Enter the details of the developer");
+            
+            taskNumber = String.valueOf(i);  
+
+            taskName = JOptionPane.showInputDialog("Enter task Name ");
+          
+            Tasks.checkTaskDescription(description, i);
+            Task.createTaskID(taskName, developerDetails, tasks);
+            String ill = Task.createTaskID(taskName, developerDetails, tasks);
+     
+            duration[i] = JOptionPane.showInputDialog("Enter the duration of the task(in hours)");
+            hours = Integer.parseInt(duration[i]);  
+            totalHours = totalHours + hours;
+       
+        
+      Tasks.printTaskDetails( i,taskM, developerDetails ,  taskStatus, taskNumber ,taskName ,description, taskID ,duration  );
+      
+      
+      
+      
+        }
+         
+        JOptionPane.showMessageDialog(null,Tasks.printD_all_Details());
+        
+        
+         JOptionPane.showMessageDialog(null,"Total number of hours for all the tasks : "+ totalHours);
+        
+                     
+                  case 2:   JOptionPane.showMessageDialog(null,"Coming soon!");  
+                           continue;
                   case 3:   JOptionPane.showMessageDialog(null,"Thank you for using our service...."); 
+                            break;
            }
         }
        
 
     }
+    }
 
     // obj.close();
-}
+
 //for methods that return a boolean use assertTrue or assertFalse to test and execute

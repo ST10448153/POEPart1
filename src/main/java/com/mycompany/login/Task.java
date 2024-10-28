@@ -9,50 +9,57 @@ import javax.swing.JOptionPane;
  * @author RC_Student_lab
  */
 public class Task {
-     public static void main(String[] args) {
-      String input = JOptionPane.showInputDialog("Enter the number of tasks:");
-        int tasks = Integer.parseInt(input);
-
-        // Arrays to store names and marks
-        String[] taskStatus = new String[tasks];
-        String[] developerDetails = new String[tasks];
-        String[] taskNumber = new String[tasks];
-        String[] taskName = new String[tasks];
-        String[] description = new String[tasks];
-        String[] taskID = new String[tasks];
-        String[] duration = new String[tasks];
-        int hours;
-        int totalHours=0;
-        String[] outputs = new String[tasks];
-        // Loop to get names and marks
-        for (int i = 0; i < tasks; i++) {
-            taskStatus[i] =JOptionPane.showInputDialog("Enter the status of the task:\n1.ToDo \n2.Done \n3.Doing");
-           
-           int hill = Integer.parseInt(taskStatus[i]);
-           String taskM = null;
-           if(hill ==1 ){
-                 taskM = "To Do";
-            }
-           if(hill ==2){
-              taskM = "Done";
-           }
-           if(hill ==3){
-               taskM = "Doing";
-           }
-             
-            
-            developerDetails[i] =JOptionPane.showInputDialog("Enter the details of the developer");
-            taskNumber[i] = JOptionPane.showInputDialog("Enter the task Number" + (i + 1) + ":");
-            taskName[i] = JOptionPane.showInputDialog("Enter task name " + (i + 1) +":");
-            description[i] = JOptionPane.showInputDialog("Enter the task description" + (i + 1) + ":");
+    
+    StringBuilder hold = new StringBuilder();
+    public  boolean checkTaskDescription(String description[], int i){
+          description[i] = JOptionPane.showInputDialog("Enter the task Description");
+            while(description[i].length()>=50){
+                description[i] = JOptionPane.showInputDialog("Please make sure that you enter task description of less than 50 characters!! \nEnter the task description");}
             JOptionPane.showMessageDialog(null,"Task Description is successfully captured!!!");
-            duration[i] = JOptionPane.showInputDialog("Enter the duration of the task(in hours)");
-            hours = Integer.parseInt(duration[i]);  
-            totalHours = totalHours + hours;
-        // Show the results in a JOptionPane
-        JOptionPane.showMessageDialog(null,"Task Status: "+ taskM +"\n"+ "Developer Details: "+ developerDetails[i]+"\n"+"task Number: "+taskNumber[i]+"\n"+"Task name: "+taskName[i]+"\n"+
-               "Task Description: "+ description[i] +"\n"+"Duration of the task: "+ duration[i] ,"Task Details", JOptionPane.INFORMATION_MESSAGE);
+          return description[i].length() < 50;
     }
-         JOptionPane.showMessageDialog(null,"Total number of hours for all the tasks : "+ totalHours);
-        }
-}
+    public static String createTaskID(String taskName, String developerDetails, int tasks){
+        String taskInitials = taskName.substring(0, 1).toUpperCase();
+        String devSuffix = developerDetails.length()>=3? developerDetails.substring(developerDetails.length() -3).toUpperCase() : developerDetails.toUpperCase();
+        JOptionPane.showMessageDialog(null, taskInitials + ":" + tasks + ":" + devSuffix);
+        return  taskInitials + ":" + tasks + ":" + devSuffix;
+        
+    }
+    // String ill =createTaskID(String taskName, String developerDetails, int tasks);
+    public  void printTaskDetails(int i, String taskM, String developerDetails ,       
+        String[] taskStatus,
+        String taskNumber,
+        String taskName ,
+        String[] description ,
+        String[] taskID ,
+        String[] duration  
+                        ){
+        
+        
+        //String ill = createTaskID(String taskName, String developerDetails, int tasks);
+            
+       hold.append("Task Status: ").append(taskM).append("\nDeveloper Details: ").append(developerDetails).append("\ntask Number: ").append(taskNumber).append("\nTask name: ").append(taskName).append("\nTask Description: ").append(description[i]).append("\nDuration of the task: ").append(duration[i]);
+       
+     
+        
+    //return hold.toString();
+    
+    }
+   
+    
+    public String printD_all_Details(){
+        
+        return hold.toString();
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    }
