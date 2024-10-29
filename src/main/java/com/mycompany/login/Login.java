@@ -77,5 +77,3 @@ public class Login {
         
     
 
-//the number of tasks that is pompted to the user is gonna be the 
-//be the size of the array for tasks.

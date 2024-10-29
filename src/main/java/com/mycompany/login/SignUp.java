@@ -56,15 +56,17 @@ public class SignUp {
 
             System.out.println("Enter password>> ");
             String password2 = obj.nextLine();
-
-            // Check login
-            String loginStatus = login.returnLoginStatus(username2, password2);
-            System.out.println(loginStatus);
         }
-      
-
+            // Check login
+            String loginStatus = login.returnLoginStatus(userName, password);
+            System.out.println(loginStatus);
+        
+     //   if(loginStatus.equals("A successful Login, Welcome ")){
+            
+        
+        
         JOptionPane.showMessageDialog(null, "Welcome to EasyKhanban");
-      int option = Integer.parseInt( JOptionPane.showInputDialog("Select an option:\n1.Add tasks \n2.Show report \n3.Quit"));
+         int option = Integer.parseInt( JOptionPane.showInputDialog("Select an option:\n1.Add tasks \n2.Show report \n3.Quit"));
 //        int option = Integer.parseInt(select);
         while (option != 0 || option !=3) {
            
@@ -77,11 +79,11 @@ public class SignUp {
 
         // Arrays to store names and marks
         String[] taskStatus = new String[tasks];
-        String developerDetails;
+        String developerDetails = null;
         String taskNumber;
-        String taskName ;
-        String[] description = new String[tasks];
-        String[] taskID = new String[tasks];
+        String taskName = null ;
+        String description = null;
+        String taskID;
         String[] duration = new String[tasks];
         int hours;
         int totalHours=0;
@@ -108,27 +110,47 @@ public class SignUp {
             taskNumber = String.valueOf(i);  
 
             taskName = JOptionPane.showInputDialog("Enter task Name ");
+              description = JOptionPane.showInputDialog("Enter the task Description");
+            while(description.length()>=50){
+                if(Tasks.checkTaskDescription(description)){
+                    JOptionPane.showMessageDialog(null,"Task Description is successfully captured!!!");
+                    break;
+                }
+                else
+                description = JOptionPane.showInputDialog("Please make sure that you enter task description of less than 50 characters!! \nEnter the task description");
+            }
+            
           
-            Tasks.checkTaskDescription(description, i);
-            Task.createTaskID(taskName, developerDetails, tasks);
-            String ill = Task.createTaskID(taskName, developerDetails, tasks);
-     
-            duration[i] = JOptionPane.showInputDialog("Enter the duration of the task(in hours)");
-            hours = Integer.parseInt(duration[i]);  
-            totalHours = totalHours + hours;
-       
+            
+           // Task.createTaskID(taskName, developerDetails, tasks);
+         //  JOptionPane.showMessageDialog(null,Task.createTaskID(taskName, developerDetails, tasks) );
+             duration[i] = JOptionPane.showInputDialog("Enter the duration of the task(in hours)");
+             hours = Integer.parseInt(duration[i]);  
+             totalHours = totalHours + hours;
+             String gill = String.valueOf(totalHours);
+           
+         // int take = Tasks.returnTotalHours(duration, tasks);
+          //String str1 = String.valueOf(Tasks.returnTotalHours(duration, tasks));
+         // String[] fill = str1.split(",");
+          
+          taskID =Tasks.createTaskID(taskName, developerDetails, tasks);
+       //    String[] gill = tull.split(",");
+          
+          Tasks.printTaskDetails( i,taskM, developerDetails ,  taskStatus, taskNumber ,taskName , description, taskID, gill  );
+         // JOptionPane.showMessageDialog(null, "Total hours is: "+ totalHours + " hours.");
+      //JOptionPane.showMessageDialog(null, "TaskID: " + Tasks.createTaskID(taskName, developerDetails, tasks));
         
-      Tasks.printTaskDetails( i,taskM, developerDetails ,  taskStatus, taskNumber ,taskName ,description, taskID ,duration  );
       
-      
-      
+     option = Integer.parseInt( JOptionPane.showInputDialog("Select an option:\n1.Add tasks \n2.Show report \n3.Quit"));
       
         }
          
-        JOptionPane.showMessageDialog(null,Tasks.printD_all_Details());
+   
         
         
-         JOptionPane.showMessageDialog(null,"Total number of hours for all the tasks : "+ totalHours);
+         
+
+
         
                      
                   case 2:   JOptionPane.showMessageDialog(null,"Coming soon!");  
@@ -136,11 +158,16 @@ public class SignUp {
                   case 3:   JOptionPane.showMessageDialog(null,"Thank you for using our service...."); 
                             break;
            }
+            option = Integer.parseInt( JOptionPane.showInputDialog("Select an option:\n1.Add tasks \n2.Show report \n3.Quit"));
         }
        
 
     }
-    }
+    
+}
+    
+
+
 
     // obj.close();
 
