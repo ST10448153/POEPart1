@@ -187,6 +187,10 @@ public class SignUp {
        
 
     }
+
+    static void printTaskDetails(int i, String taskStatus, String developerDetails, String taskStatus0, int taskNumber, String taskName, String taskDescription, String expResult, int expected) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }
     

@@ -22,23 +22,9 @@ public class TaskTest {
      int taskDuration1 = 8;
      int taskDuration2 = 10;
     String taskDescription = "Create login to authenticate users";
-    public void storeTask1(){
-        String taskName = "Login feature";
-        int taskNumber;
-        int i=1;
-        int Task =1;
-        while(i<=numTasks){
-           
-           if (Task ==1){
-               taskNumber =i;
-           }
-            }
-     String taskDescription = "Create login to authenticate users";
-     String developerDetails = "Robyn Harrison";
-    
-       
-     
-    }
+    String taskStatus ="ToDo";
+    String taskName = "Loging Feature";
+    String developerDetails = "Robyn Harrison";
     
    
     @Test
@@ -53,6 +39,21 @@ public class TaskTest {
         assertFalse(Task.checkTaskDescription(taskDescription)); 
           System.out.println("please enter description of less than 50 characters");
     }
+     @Test
+    public void testCreateTaskID() {
+   
+        
+       
+        int tasks = 2;
+        Task instance = new Task();
+        String lastTwo;
+        
+        String expResult =  taskName.substring(0, 2).toUpperCase() +":"+ tasks + ":" + developerDetails.substring(developerDetails.length() - 3).toUpperCase();
+        String result = instance.createTaskID("Loging Feature", "Robyn Harrison", 2);
+        assertEquals(expResult, result);
+        
+    }
+
     
     @Test
     public void testReturnTotalHours() {
@@ -69,43 +70,20 @@ public class TaskTest {
       assertEquals(expected,time);
     }
 
-    /**
-     * Test of createTaskID method, of class Task.
-     */
-    @Test
-    public void testCreateTaskID() {
-        System.out.println("createTaskID");
-        String taskName = "";
-        String developerDetails = "";
-        int tasks = 0;
-        Task instance = new Task();
-        String lastTwo;
-        String str = "Loging Feature";
-        String expResult =  str.substring(str.length() - 2);
-        String result = instance.createTaskID(taskName, developerDetails, tasks);
-        assertEquals(expResult, result);
-        
-    }
-
-    /**
-     * Test of printTaskDetails method, of class Task.
-     */
+   
     @Test
     public void testPrintTaskDetails() {
-        System.out.println("printTaskDetails");
-        int i = 0;
-        String taskM = "";
-        String developerDetails = "";
-        String[] taskStatus = null;
-        String taskNumber = "";
-        String taskName = "";
-        String description = null;
-        String taskID = "";
-        String duration = "";
+         int i =2;
+         int taskNumber =0;
+     
         Task instance = new Task();
-        instance.printTaskDetails(i, taskM, developerDetails, taskStatus, taskNumber, taskName, description, taskID, duration);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int[] duration = {8,10};
+        int time=0;
+        int expected = duration[0] + duration[1];
+            String expResult =  taskName.substring(0, 2).toUpperCase() +":"+ numTasks + ":" + developerDetails.substring(developerDetails.length() - 3).toUpperCase();
+     
+       
+   
     }
 
     /**
@@ -118,8 +96,7 @@ public class TaskTest {
         String expResult = "";
         String result = instance.printD_all_Details();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
     
 }
