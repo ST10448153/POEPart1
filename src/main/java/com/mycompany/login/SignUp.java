@@ -64,20 +64,31 @@ public class SignUp {
      //   if(loginStatus.equals("A successful Login, Welcome ")){
             
         
-        
+        //we use JOptionPane class to print out the below message that will be displayed centrally on the screen.
         JOptionPane.showMessageDialog(null, "Welcome to EasyKhanban");
+        /*
+        Below we use JOptionPnae class to display the menu where the user can choose an option for example add tasks.
+        because JOptionPane returns a string we pass it as the argument to the Integer.parseInt() to convert string to integer
+        we then store that value in option variable.
+        
+        */
          int option = Integer.parseInt( JOptionPane.showInputDialog("Select an option:\n1.Add tasks \n2.Show report \n3.Quit"));
-//        int option = Integer.parseInt(select);
+        // Below is an indefinite while loop that keeps on executing for as long as option is not equals to 0 or option is not equals to 3. 
         while (option != 0 || option !=3) {
            
            String add;
            int tasks;
            switch(option){
                   case 1 : 
+                      /*
+                      while inside the loop after the user has entered their option, a switch case is created to accomodate situations that come 
+                      with different option.when the user choose option 1 a JOptionPane message is displayed that asks the user to enter the number of tasks
+                      and that value is stored in input string variable that is then converted to integer variable called tasks.
+                      */
                       String input = JOptionPane.showInputDialog("Enter the number of tasks:");
                         tasks = Integer.parseInt(input);
 
-        // Arrays to store names and marks
+        //variables and arrays are declared and some initialized.
         String[] taskStatus = new String[tasks];
         String developerDetails = null;
         String taskNumber;
@@ -90,29 +101,42 @@ public class SignUp {
         String[] outputs = new String[tasks];
         
         for (int i = 0; i < tasks; i++) {
+            /*
+            here we enter a for loop that uses integer variable i as the control variable.and this control variable should not be
+            greater or equals to the tasks variable which is the number of tasks the user wishes to enter, And lastly this control variable
+            is incremented on each iteration.
+            Below, a user is shown a small task status menu using JOptionPane and the result is stores in taskStatus array that is then
+            converted into integer and stored in integer variable hill.
+            */
             taskStatus[i] =JOptionPane.showInputDialog("Enter the status of the task:\n1.ToDo \n2.Done \n3.Doing");
-           
-           int hill = Integer.parseInt(taskStatus[i]);
+          
+           int statusTask = Integer.parseInt(taskStatus[i]);
            String taskM = null;
-           if(hill ==1 ){
+           if(statusTask ==1 ){
                  taskM = "To Do";
             }
-           if(hill ==2){
+           if(statusTask ==2){
               taskM = "Done";
            }
-           if(hill ==3){
+           if(statusTask ==3){
                taskM = "Doing";
            }
              
-            
+            //below the details of the developer such as first name and last name are prompted to the user and then stored in developerDetail string variable.
             developerDetails =JOptionPane.showInputDialog("Enter the details of the developer");
             
+            //since we are still in a for loop the control variable i represent the number of times the user wants to enter the tasks,
+            //it makes sense to convert it to string and then store that value in variable taskNumber, thats what happens below.
             taskNumber = String.valueOf(i);  
-
+            //below a user is prompted to enter the task name and task description and the values are stored respectively.
             taskName = JOptionPane.showInputDialog("Enter task Name ");
-              description = JOptionPane.showInputDialog("Enter the task Description");
+            description = JOptionPane.showInputDialog("Enter the task Description");
+            
+            /*Below is an indefinite while loop that checks if the entered task description has more than 50 characters.
+            checkTaskDescription() method is called from Task class and if the description is less than 50 characters then a confirmation
+            message is displayed and then while loop is exited, if not then it continues to prompt the user until description is less than 50 characters.*/
             while(description.length()>=50){
-                if(Tasks.checkTaskDescription(description)){
+                if(Task.checkTaskDescription(description)){
                     JOptionPane.showMessageDialog(null,"Task Description is successfully captured!!!");
                     break;
                 }
@@ -121,27 +145,27 @@ public class SignUp {
             }
             
           
+            /*Below the user is prompted to enter the duration of the current task that is stored in hours and is stored in a string array called
+             duration.this is then coverted into an integer variable called hours using Integer.parseInt() method.integer varaible totalHours is initialized
+             to zero before entering the for loop and then the new totalHours value includes it's previous value plus the hours value and since this is addition
+            is for integers totalHours has to be converted to string variable called gill so tha it can be displayed using printTaskDetails method.
             
-           // Task.createTaskID(taskName, developerDetails, tasks);
-         //  JOptionPane.showMessageDialog(null,Task.createTaskID(taskName, developerDetails, tasks) );
+            */
              duration[i] = JOptionPane.showInputDialog("Enter the duration of the task(in hours)");
              hours = Integer.parseInt(duration[i]);  
              totalHours = totalHours + hours;
-             String gill = String.valueOf(totalHours);
+             String hoursTotal = String.valueOf(totalHours);
            
-         // int take = Tasks.returnTotalHours(duration, tasks);
-          //String str1 = String.valueOf(Tasks.returnTotalHours(duration, tasks));
-         // String[] fill = str1.split(",");
-          
+          //createTaskID method is called from Task class and is given arguments and then the result is stored in string variable called taskID
+          //the result is stored in a string variable because the method returns a string.
           taskID =Tasks.createTaskID(taskName, developerDetails, tasks);
-       //    String[] gill = tull.split(",");
           
-          Tasks.printTaskDetails( i,taskM, developerDetails ,  taskStatus, taskNumber ,taskName , description, taskID, gill  );
-         // JOptionPane.showMessageDialog(null, "Total hours is: "+ totalHours + " hours.");
-      //JOptionPane.showMessageDialog(null, "TaskID: " + Tasks.createTaskID(taskName, developerDetails, tasks));
+          //here a printTaskDetails method is called from Task class and displays (using JOptionPane) all the task details.
+          Tasks.printTaskDetails( i,taskM, developerDetails ,  taskStatus, taskNumber ,taskName , description, taskID, hoursTotal  );
+       
         
-      
-     option = Integer.parseInt( JOptionPane.showInputDialog("Select an option:\n1.Add tasks \n2.Show report \n3.Quit"));
+          //after displaying all details the user is propted with the menu again.
+          option = Integer.parseInt( JOptionPane.showInputDialog("Select an option:\n1.Add tasks \n2.Show report \n3.Quit"));
       
         }
          

@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+
 /**
  *
  * @author RC_Student_lab
@@ -17,35 +18,55 @@ public class TaskTest {
     
     public TaskTest() {
     }
+    int numTasks =2;
+     int taskDuration1 = 8;
+     int taskDuration2 = 10;
+    String taskDescription = "Create login to authenticate users";
+    public void storeTask1(){
+        String taskName = "Login feature";
+        int taskNumber;
+        int i=1;
+        int Task =1;
+        while(i<=numTasks){
+           
+           if (Task ==1){
+               taskNumber =i;
+           }
+            }
+     String taskDescription = "Create login to authenticate users";
+     String developerDetails = "Robyn Harrison";
     
-    
-    @Test
-    public void testCheckTaskDescription() {
-      //String take =  JOptionPane.showInputDialog("Enter the description ");
-        String description = null;
-        int i = 0;
-        Task instance = new Task();
-        boolean expResult = true;
-        boolean result = instance.checkTaskDescription(description);
-        assertEquals(expResult, result);
        
-        fail("actual and expected results are not the same");
+     
     }
-
-    /**
-     * Test of returnTotalHours method, of class Task.
-     */
+    
+   
+    @Test
+    public void testCheckTaskDescriptionTrue() {
+      // assertTrue(Task.checkTaskDescription(taskDescription));
+       assertTrue(Task.checkTaskDescription(taskDescription));           
+       System.out.println("Task successfully captured");
+       
+    }
+    @Test
+    public void testCheckTaskDescriptionFalse() {
+        assertFalse(Task.checkTaskDescription(taskDescription)); 
+          System.out.println("please enter description of less than 50 characters");
+    }
+    
     @Test
     public void testReturnTotalHours() {
-        System.out.println("returnTotalHours");
-        String duration = "";
-        int tasks = 0;
-        Task instance = new Task();
-        int expResult = 0;
-        int result = instance.returnTotalHours(duration, tasks);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+      int[] duration = {8,10};
+      int time=0;
+      int expected = duration[0] + duration[1];
+      Task instance = new Task();
+      int i=1;
+      while(i<3){
+          time = instance.returnTotalHours(duration[i]);
+          i=i+1;
+          
+      }
+      assertEquals(expected,time);
     }
 
     /**
@@ -58,11 +79,12 @@ public class TaskTest {
         String developerDetails = "";
         int tasks = 0;
         Task instance = new Task();
-        String expResult = "";
+        String lastTwo;
+        String str = "Loging Feature";
+        String expResult =  str.substring(str.length() - 2);
         String result = instance.createTaskID(taskName, developerDetails, tasks);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
