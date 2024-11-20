@@ -91,6 +91,7 @@ public class SignUp {
         //variables and arrays are declared and some initialized.
         String[] taskStatus = new String[tasks];
         String developerDetails = null;
+        String time = null;
         String taskNumber;
         String taskName = null ;
         String description = null;
@@ -151,8 +152,8 @@ public class SignUp {
             is for integers totalHours has to be converted to string variable called gill so tha it can be displayed using printTaskDetails method.
             
             */
-             duration[i] = JOptionPane.showInputDialog("Enter the duration of the task(in hours)");
-             hours = Integer.parseInt(duration[i]);  
+             time = JOptionPane.showInputDialog("Enter the duration of the task(in hours)");
+             hours = Integer.parseInt(time);  
              totalHours = totalHours + hours;
              String hoursTotal = String.valueOf(totalHours);
            
@@ -168,6 +169,7 @@ public class SignUp {
           option = Integer.parseInt( JOptionPane.showInputDialog("Select an option:\n1.Add tasks \n2.Show report \n3.Quit"));
       
         }
+        
          
    
         
@@ -192,11 +194,4 @@ public class SignUp {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
-}
-    
-
-
-
-    // obj.close();
-
-//for methods that return a boolean use assertTrue or assertFalse to test and execute
+}  
