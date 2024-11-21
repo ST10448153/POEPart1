@@ -174,59 +174,51 @@ public class SignUp {
           
           //here a printTaskDetails method is called from Task class and displays (using JOptionPane) all the task details.
          Tasks.printTaskDetails( i,taskM, developerDetails ,  taskStatus, taskNumber ,taskName , description, taskID, hoursTotal  );
-          
+         
        
         
           //after displaying all details the user is propted with the menu again.
           //option = Integer.parseInt( JOptionPane.showInputDialog("Select an option:\n1.Add tasks \n2.Show report \n3.Quit"));
-                String statusDone = JOptionPane.showInputDialog("Do you want to view all the tasks that have status Done?");  
+                
+                           
+        }
+              String statusDone = JOptionPane.showInputDialog("Do you want to view the tasks that have status Done?");  
                           if(statusDone.equals("yes")){
                               POEmethods.displayWithStatusDone(developer, taskNAME, duraTion, taskStaTus);
                           }
-                           break;
-        }
-        
-         
-   taskController++;
-        
-                        }break;
-         
-
-
-        
-                 
-                      
-                  case 3: String longDuration = JOptionPane.showInputDialog("Do you want to view all the developer with the longest time?"); 
+              String longDuration = JOptionPane.showInputDialog("Do you want to view the developer with the longest time?"); 
                           if(longDuration.equals("yes")){
                               POEmethods.displayWithLongestDuration(developer, taskNAME, duraTion);
                           }
-                          break;
-                      
-                  case 4: String search = JOptionPane.showInputDialog("Do you want to search for a task using a task name?"); 
+             String search = JOptionPane.showInputDialog("Do you want to search for a task using a task name?"); 
                           if(search.equals("yes")){
                               String searchName = JOptionPane.showInputDialog("Enter the name of the task that is going to be searched");
                               POEmethods.searchWithTaskName(developer, taskNAME, taskStaTus, search);
                           }
-                          break;
-                      
-                  case 5: String searchAll = JOptionPane.showInputDialog("Do you want to search for all tasks assigned to a particular developer?"); 
+             String searchAll = JOptionPane.showInputDialog("Do you want to search for all tasks assigned to a particular developer?"); 
                           if(searchAll.equals("yes")){
                               String developerAssigned = JOptionPane.showInputDialog("Enter the name of the developer");
                               POEmethods.searchWithDeveloper(developer, taskNAME, taskStaTus, developerAssigned);
                           }
-                          break;
-                          
-                  case 6: String delete = JOptionPane.showInputDialog("Do you want to delete a task using a task name?"); 
+             String delete = JOptionPane.showInputDialog("Do you want to delete a task using a task name?"); 
                           if(delete.equals("yes")){
                             String  taskToDelete = JOptionPane.showInputDialog("Enter the name of the task to be deleted");
                             POEmethods.deleteTask(taskNAME, taskToDelete);
                           }
-                          break;
-                  case 7: String allTask = JOptionPane.showInputDialog("write yes if you want to print all the details of all captured tasks");   
+                                                          
+                                    
+             String allTask = JOptionPane.showInputDialog("write yes if you want to print all the details of all captured tasks");   
                           if(allTask.equals("yes")){
                               POEmethods.displayAllTasks(developer, taskNAME, taskStaTus, duraTion);
                           }
-                          break;
+              
+                                   
+                          
+                         
+   taskController++;
+        
+                        }break;
+         
                       
                   case 8:   JOptionPane.showMessageDialog(null,"Coming soon!");  
                            break;
