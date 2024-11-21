@@ -20,12 +20,19 @@ public class POEmethods {
     static String[] taskStaTus = new String[tasks];
     
     public static String displayWithStatusDone(String[] developer, String[] taskNAME, int[] duraTion, String[] taskStaTus){
+         StringBuilder result = new StringBuilder();
          for(int i = 0; i < tasks; i++){
               if(taskStaTus[i].equals("Done")){
-                 JOptionPane.showMessageDialog(null,"Developers: " + developer[i] + "Task Name: " + taskNAME[i] + "Task Duration :" + duraTion[i]);
+                 result.append("Developer: ").append(developer[i])
+                      .append(", Task Name: ").append(taskNAME[i])
+                      .append(", Task Duration: ").append(duraTion[i])
+                      .append("\n");
               }
         }
-        return "Developers: " + developer + "Task Name: " + taskNAME + "Task Duration :" + duraTion;
+         if (result.length() == 0) {
+            return result.toString();
+        } 
+        return result.toString();
     }
     public static void displayWithLongestDuration(String[] developer, String[] taskNAME, int[] duraTion){
          StringBuilder add = new StringBuilder();
@@ -72,9 +79,24 @@ public class POEmethods {
             }
         }
     }
-    public static void main(String[] args) {
-     tasks =  Integer.parseInt(  JOptionPane.showInputDialog("Enter the number of tasks"));
-   
+    
+    public static void displayAllTasks(String[] developer, String[] taskName, String[] taskStaTus, int[] duraTion){
+         StringBuilder taskDetails = new StringBuilder();
+        
+
+        // Loop through the arrays and append each task's data to the StringBuilder
+        for (int i = 0; i < developer.length; i++) {
+            taskDetails.append("Task " + (i + 1) + ":\n");
+            taskDetails.append("Developer: " + developer[i] + "\n");
+            taskDetails.append("Task Name: " + taskName[i] + "\n");
+            taskDetails.append("Duration: " + duraTion[i] + " hours\n");
+            taskDetails.append("Status: " + taskStaTus[i] + "\n");
+            taskDetails.append("----------------------------\n");
+        }
+
+        // Display the formatted task data in a JOptionPane dialog
+        JOptionPane.showMessageDialog(null, taskDetails.toString());
     }
+   
        
 }

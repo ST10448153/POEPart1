@@ -9,13 +9,18 @@ package com.mycompany.login;
  * @author RC_Student_lab
  */
 
+import static com.mycompany.login.POEmethods.tasks;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import javax.swing.JDialog;
 
 public class SignUp {
    //AddTasks hh = new AddTasks();
-    
+     static  String[]  developer = new String[tasks];
+     static String[] taskNAME = new String[tasks];
+    static String[] tasKID = new String[tasks];
+    static int[] duraTion = new int[tasks];
+    static String[] taskStaTus = new String[tasks];
     static Task Tasks = new Task();
     public static void main(String[] args) {
         
@@ -74,12 +79,13 @@ public class SignUp {
         */
          int option = Integer.parseInt( JOptionPane.showInputDialog("Select an option:\n1.Add tasks \n2.Show report \n3.Quit"));
         // Below is an indefinite while loop that keeps on executing for as long as option is not equals to 0 or option is not equals to 3. 
-        while (option != 0 || option !=3) {
+        switch(option) {
+            case 1:            
            
            String add;
+           int taskController =0;
            int tasks;
-           switch(option){
-                  case 1 : 
+           
                       /*
                       while inside the loop after the user has entered their option, a switch case is created to accomodate situations that come 
                       with different option.when the user choose option 1 a JOptionPane message is displayed that asks the user to enter the number of tasks
@@ -87,8 +93,13 @@ public class SignUp {
                       */
                       String input = JOptionPane.showInputDialog("Enter the number of tasks:");
                         tasks = Integer.parseInt(input);
+                        while(taskController<tasks){
+                            
+                        
 
         //variables and arrays are declared and some initialized.
+       
+    
         String[] taskStatus = new String[tasks];
         String developerDetails = null;
         String time = null;
@@ -162,36 +173,72 @@ public class SignUp {
           taskID =Tasks.createTaskID(taskName, developerDetails, tasks);
           
           //here a printTaskDetails method is called from Task class and displays (using JOptionPane) all the task details.
-          Tasks.printTaskDetails( i,taskM, developerDetails ,  taskStatus, taskNumber ,taskName , description, taskID, hoursTotal  );
+         Tasks.printTaskDetails( i,taskM, developerDetails ,  taskStatus, taskNumber ,taskName , description, taskID, hoursTotal  );
+          
        
         
           //after displaying all details the user is propted with the menu again.
-          option = Integer.parseInt( JOptionPane.showInputDialog("Select an option:\n1.Add tasks \n2.Show report \n3.Quit"));
-      
+          //option = Integer.parseInt( JOptionPane.showInputDialog("Select an option:\n1.Add tasks \n2.Show report \n3.Quit"));
+                String statusDone = JOptionPane.showInputDialog("Do you want to view all the tasks that have status Done?");  
+                          if(statusDone.equals("yes")){
+                              POEmethods.displayWithStatusDone(developer, taskNAME, duraTion, taskStaTus);
+                          }
+                           break;
         }
         
          
-   
+   taskController++;
         
-        
+                        }break;
          
 
 
         
-                     
-                  case 2:   JOptionPane.showMessageDialog(null,"Coming soon!");  
-                           continue;
-                  case 3:   JOptionPane.showMessageDialog(null,"Thank you for using our service...."); 
+                 
+                      
+                  case 3: String longDuration = JOptionPane.showInputDialog("Do you want to view all the developer with the longest time?"); 
+                          if(longDuration.equals("yes")){
+                              POEmethods.displayWithLongestDuration(developer, taskNAME, duraTion);
+                          }
+                          break;
+                      
+                  case 4: String search = JOptionPane.showInputDialog("Do you want to search for a task using a task name?"); 
+                          if(search.equals("yes")){
+                              String searchName = JOptionPane.showInputDialog("Enter the name of the task that is going to be searched");
+                              POEmethods.searchWithTaskName(developer, taskNAME, taskStaTus, search);
+                          }
+                          break;
+                      
+                  case 5: String searchAll = JOptionPane.showInputDialog("Do you want to search for all tasks assigned to a particular developer?"); 
+                          if(searchAll.equals("yes")){
+                              String developerAssigned = JOptionPane.showInputDialog("Enter the name of the developer");
+                              POEmethods.searchWithDeveloper(developer, taskNAME, taskStaTus, developerAssigned);
+                          }
+                          break;
+                          
+                  case 6: String delete = JOptionPane.showInputDialog("Do you want to delete a task using a task name?"); 
+                          if(delete.equals("yes")){
+                            String  taskToDelete = JOptionPane.showInputDialog("Enter the name of the task to be deleted");
+                            POEmethods.deleteTask(taskNAME, taskToDelete);
+                          }
+                          break;
+                  case 7: String allTask = JOptionPane.showInputDialog("write yes if you want to print all the details of all captured tasks");   
+                          if(allTask.equals("yes")){
+                              POEmethods.displayAllTasks(developer, taskNAME, taskStaTus, duraTion);
+                          }
+                          break;
+                      
+                  case 8:   JOptionPane.showMessageDialog(null,"Coming soon!");  
+                           break;
+                  case 9:   JOptionPane.showMessageDialog(null,"Thank you for using our service...."); 
                             break;
            }
-            option = Integer.parseInt( JOptionPane.showInputDialog("Select an option:\n1.Add tasks \n2.Show report \n3.Quit"));
+           
+           // option = Integer.parseInt( JOptionPane.showInputDialog("Select an option:\n1.Add tasks \n2.Show report \n3.Quit"));
         }
        
 
     }
 
-    static void printTaskDetails(int i, String taskStatus, String developerDetails, String taskStatus0, int taskNumber, String taskName, String taskDescription, String expResult, int expected) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
-}  
+   
+  

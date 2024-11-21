@@ -25,49 +25,33 @@ public class SignUpTest {
        String tasknameTemp=null;
        int duRationTemp = 0;
 
-        
+    StringBuilder expectedOutput = new StringBuilder();
+    for (int i = 0; i < taskStatus.length; i++) {
+        if (taskStatus[i].equals("Done")) {
+            expectedOutput.append(developer[i])
+                           .append(" ")
+                           .append(taskNames[i])
+                           .append(" ")
+                           .append(taskDuration[i])
+                           .append("\n");
+        }
+    }
+
+    // Call the method you're testing
+    String actualOutput = POEmethods.displayWithStatusDone(developer, taskNames, taskDuration, taskStatus);
+
+    // Assert that the actual output matches the expected output
+    assertEquals(expectedOutput.toString(), actualOutput);
 
        
 
-        // Call the method
-        POEmethods.displayWithStatusDone(developer, taskNames, taskDuration, taskStatus);
-        // Define the expected output
-        for(int i =0; i<taskStatus.length;i++){
-            if(taskStatus[i].equals("Done")){
-              devLoperTemp = developer[i];
-              tasknameTemp = taskNames[i];
-              duRationTemp = taskDuration[i];
-            }
+      
         }
-        
-        String expectedOutput = devLoperTemp + " "+ tasknameTemp + " " + duRationTemp;
-
-        // Compare the captured output with the expected output
-        //assertArrayEquals(expectedOutput, POEmethods.displayWithStatusDone(developer, taskNames, taskDuration, taskStatus)); 
-        
-        
     }
 
- 
+
 
     /**
      * Test of printTaskDetails method, of class SignUp.
      */
-    @Test
-    public void testPrintTaskDetails() {
-        System.out.println("printTaskDetails");
-        int i = 0;
-        String taskStatus = "";
-        String developerDetails = "";
-        String taskStatus0 = "";
-        int taskNumber = 0;
-        String taskName = "";
-        String taskDescription = "";
-        String expResult_2 = "";
-        int expected = 0;
-        SignUp.printTaskDetails(i, taskStatus, developerDetails, taskStatus0, taskNumber, taskName, taskDescription, expResult_2, expected);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
-}
+   
